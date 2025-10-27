@@ -36,9 +36,19 @@ return [
     */
 
     'guards' => [
-        'web' => [
+        'web' => [ // Este es para tus clientes (Users)
             'driver' => 'session',
             'provider' => 'users',
+        ],
+
+        'staff' => [ // <-- AÑADE ESTE BLOQUE
+            'driver' => 'session',
+            'provider' => 'staff',
+        ],
+
+        'sanctum' => [
+            'driver' => 'sanctum',
+            'provider' => null,
         ],
     ],
 
@@ -62,7 +72,12 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => env('AUTH_MODEL', App\Models\User::class),
+            'model' => App\Modules\Users\User::class,
+        ],
+
+        'staff' => [ // <-- AÑADE ESTE BLOQUE
+            'driver' => 'eloquent',
+            'model' => App\Modules\Admin\Staff::class, // Le decimos que use tu modelo Staff
         ],
 
         // 'users' => [
@@ -93,6 +108,13 @@ return [
     'passwords' => [
         'users' => [
             'provider' => 'users',
+            'table' => env('AUTH_PASSWORD_RESET_TOKEN_TABLE', 'password_reset_tokens'),
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+
+        'staff' => [ // <-- AÑADE ESTE BLOQUE
+            'provider' => 'staff', // Le dice que use el provider 'staff'
             'table' => env('AUTH_PASSWORD_RESET_TOKEN_TABLE', 'password_reset_tokens'),
             'expire' => 60,
             'throttle' => 60,

@@ -2,6 +2,7 @@
 
 namespace App\Modules\Users;
 
+
 // Asegúrate de importar todas estas clases
 use App\Modules\Core\Account;
 use App\Modules\Core\Category;
@@ -21,10 +22,19 @@ class User extends Authenticatable
     use HasApiTokens, HasFactory, Notifiable;
 
     /**
+     * El nombre de la tabla asociada con el modelo.
+     *
+     * @var string
+     */
+    protected $table = 'users';
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
      */
+
+
     protected $fillable = [
         'name',
         'email',

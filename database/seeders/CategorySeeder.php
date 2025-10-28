@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use App\Modules\Core\Category; // Importa el modelo
+use App\Modules\Core\Category;
 
 class CategorySeeder extends Seeder
 {
@@ -15,7 +15,8 @@ class CategorySeeder extends Seeder
         $categories = [
             // Egresos
             ['name' => 'Impuestos', 'type' => 'Egreso'],
-            ['name' => 'Préstamos', 'type' => 'Egreso'], // Categoría para el Módulo 5
+            ['name' => 'Préstamos', 'type' => 'Egreso'],
+            ['name' => 'Transferencia', 'type' => 'Egreso'],
             ['name' => 'Alimentación', 'type' => 'Egreso'],
             ['name' => 'Transporte', 'type' => 'Egreso'],
             ['name' => 'Vivienda', 'type' => 'Egreso'],
@@ -24,8 +25,9 @@ class CategorySeeder extends Seeder
             ['name' => 'Otros Egresos', 'type' => 'Egreso'],
 
             // Ingresos
+            ['name' => 'Transferencia', 'type' => 'Ingreso'],
             ['name' => 'Salario', 'type' => 'Ingreso'],
-            ['name' => 'Préstamos', 'type' => 'Ingreso'], // Categoría para el Módulo 5
+            ['name' => 'Préstamos', 'type' => 'Ingreso'],
             ['name' => 'Inversiones', 'type' => 'Ingreso'],
             ['name' => 'Otros Ingresos', 'type' => 'Ingreso'],
         ];
@@ -35,7 +37,7 @@ class CategorySeeder extends Seeder
                 [
                     'name' => $category['name'],
                     'type' => $category['type'],
-                    'user_id' => null // MUY IMPORTANTE: null = categoría por defecto
+                    'user_id' => null
                 ]
             );
         }

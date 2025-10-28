@@ -28,11 +28,9 @@ class RouteServiceProvider extends ServiceProvider
     {
         parent::boot();
 
-        /**
-         * 👇 Aquí registramos manualmente los modelos
-         * para el Route Model Binding.
-         */
         Route::model('account', Account::class);
+        Route::model('transaction', \App\Modules\Core\Transaction::class);
+
 
         // Si luego tienes más modelos modulares, los registras así:
         // Route::model('transaction', \App\Modules\Core\Transaction::class);

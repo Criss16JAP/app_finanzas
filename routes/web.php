@@ -3,9 +3,8 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
-// Importa el controlador de login de Admin
 use App\Http\Controllers\Modules\Admin\Auth\AuthenticatedSessionController as AdminLoginController;
-use App\Http\Controllers\Modules\Core\AccountController;
+use App\Http\Controllers\Modules\Core\TransactionController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -21,8 +20,13 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
+    // CRUD de Cuentas
     Route::resource('cuentas', \App\Http\Controllers\Modules\Core\AccountController::class)
     ->parameters(['cuentas' => 'account']);
+
+   // CRUD de Transacciones
+    Route::resource('transacciones', TransactionController::class)
+        ->parameters(['transacciones' => 'transaction']);
 });
 
 // --- RUTAS DEL PANEL DE ADMINISTRACIÓN (STAFF) ---
